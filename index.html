@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Hug Day | Bloom</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            text-align: center;
+            max-width: 400px;
+            width: 85%;
+            z-index: 10;
+        }
+
+        .hug-image {
+            width: 100%;
+            border-radius: 18px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #ffffff;
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.2rem;
+            margin: 0 0 15px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .message {
+            color: #ffffff;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .hug-btn {
+            background: white;
+            color: #8ec5fc;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .hug-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255,255,255,0.4);
+        }
+
+        .heart-bg {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.3);
+            user-select: none;
+            pointer-events: none;
+            animation: float 8s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(110vh) scale(0); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        // Floating background icons
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-bg');
+            heart.innerHTML = '✨'; 
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            heart.style.animationDuration = Math.random() * 5 + 5 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 8000);
+        }
+        setInterval(createHeart, 700);
+
+        // Confetti Function
+        function fireHug() {
+            var scalar = 2;
+            var heart = confetti.shapeFromText({ text: '❤️', scalar });
+
+            confetti({
+                shapes: [heart],
+                particleCount: 30,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ffafbd', '#ffc3a0', '#ffffff']
+            });
+        }
+    </script>
+
+    <div class="card">
+        <h1>Happy Hug Day</h1>
+        
+        <!-- Direct Dropbox image link -->
+        <img src="https://dl.dropboxusercontent.com/scl/fi/hwd24i62k7j8lnps0qyx5/IMG-20260212-WA0018.jpg" alt="Warm Hug" class="hug-image">
+
+        <div class="message">
+            "Sometimes, a hug is the only medicine the world needs. It’s a silent way of saying, 'You matter to me.' Sending you a warm squeeze!"
+        </div>
+
+        <button class="hug-btn" onclick="fireHug()">Click for a Hug! 🤗</button>
+        
+        <p style="color: white; font-size: 0.75rem; margin-top: 20px; opacity: 0.8; letter-spacing: 1px;">
+            🎵 BLOOM - THE PAPER KITES
+        </p>
+    </div>
+
+    <!-- Background music autoplay -->
+    <audio id="bg-music" autoplay loop>
+        <source src="https://dl.dropboxusercontent.com/scl/fi/2ppt577m8tkxlqkztayqt/Aqyila-Bloom-CeeNaija.com.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // Set volume softly after autoplay starts
+        const music = document.getElementById('bg-music');
+        music.volume = 0.2; // 20% volume
+    </script>
+
+</body>
+</html>
